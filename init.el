@@ -1,4 +1,4 @@
-(push "/usr/local/bin" exec-path)
+;;(push "/usr/local/bin" exec-path)
 ;;https://github.com/dholm/dotemacs/blob/master/.emacs.d/init.el
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
@@ -18,14 +18,17 @@
         yasnippet auto-complete-yasnippet
 	
         ;; Modes
-	rvm php-mode markdown-mode
+        ruby-mode rspec-mode rvm rinari haml-mode
+        php-mode
+        markdown-mode
+
         ;;gnuplot-mode haskell-mode js2-mode markdown-mode nxhtml rainbow-mode
         ;;wc-mode python-mode pylookup slime php-mode scala-mode2 cperl-mode
         ;;jinja rvm
 
         ;; Version Control Systems
         magit
-	;;vc-clearcase git-gutter-fringe
+        ;;vc-clearcase git-gutter-fringe
 
         ;; Utilities
         ;;deft lusty-explorer profile-dotemacs sunrise-commander elim perspective
