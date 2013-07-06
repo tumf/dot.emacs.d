@@ -15,6 +15,7 @@
       anything-c-source-buffers
       anything-c-source-recentf
       anything-c-source-file-name-history
+      anything-c-source-emacs-commands
       ))
 
 
