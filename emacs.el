@@ -1,3 +1,6 @@
+;; Path
+(push "/usr/local/bin" exec-path)
+
 ;; Do not show the splash screen or message
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-echo-area-message t)
