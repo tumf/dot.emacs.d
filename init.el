@@ -40,6 +40,7 @@
 
         ;; Navigation
         ;;ace-jump-mode jump-char minimap
+        anything
 
         ;; Themes
         solarized-theme))

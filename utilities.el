@@ -5,5 +5,14 @@
 (require 'auto-save-buffers-enhanced)
 (auto-save-buffers-enhanced t)
 
+;; anything
+(require 'anything-config)
+(global-set-key [?\C-;] 'anything)
+
+
+
+
+
+
 
 

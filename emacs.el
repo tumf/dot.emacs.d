@@ -1,5 +1,8 @@
 ;; Path
 (push "/usr/local/bin" exec-path)
+(push "~/.emacs.d" load-path)
+(push "~/.emacs.d/bin" exec-path)
+
 
 ;; Do not show the splash screen or message
 (setq inhibit-splash-screen t)
