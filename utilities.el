@@ -1,6 +1,9 @@
 ;; (Utilities) ;;
 (push "~/.emacs.d/utilities" load-path)
 
+;;jaspace
+(require 'jaspace)
+
 ;; AutoSaveBuffersEnhanced
 (push "~/.emacs.d/utilities/auto-save-buffers-enhanced" load-path)
 (require 'auto-save-buffers-enhanced)
