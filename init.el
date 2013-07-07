@@ -22,7 +22,6 @@
         php-mode
         markdown-mode
         yaml-mode
-        json
         ;;gnuplot-mode haskell-mode js2-mode markdown-mode nxhtml rainbow-mode
         ;;wc-mode python-mode pylookup slime php-mode scala-mode2 cperl-mode
         ;;jinja rvm
@@ -33,7 +32,8 @@
 
         ;; Utilities
         ;;deft lusty-explorer profile-dotemacs sunrise-commander elim perspective
-        shell-command emacs-w3m
+        shell-command
+	;;emacs-w3m
 
         ;; Editing
         ;;multiple-cursors expand-region undo-tree browse-kill-ring
