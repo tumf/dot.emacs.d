@@ -6,6 +6,11 @@
 (global-set-key "\M-g" 'goto-line)
 (global-set-key "\C-w" 'kill-region)
 
+;; ウインドウを表示する
+;; http://openlab.dino.co.jp/2007/11/20/110609148.html
+(global-set-key "\M-2" 'make-frame)
+(global-set-key "\M-0" 'delete-frame)
+
 ;; for Mac
 (if (eq system-type 'darwin)
     (setq mac-command-modifier 'meta))
