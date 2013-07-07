@@ -5,9 +5,10 @@ install
 -------
 
 ```
-cd ~/repos
-git clone git@github.com:tumf/dot.emacs.d.git
-ln -s ~/repos/dot.emacs.d ~/.emacs.d
+cd
+git clone git@github.com:tumf/dot.emacs.d.git .emacs.d
+cd .emacs.d
+git submodule update --init
 ```
 
 
