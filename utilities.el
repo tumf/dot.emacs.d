@@ -14,11 +14,10 @@
 ;; yasnippets
 (require 'yasnippet)
 (setq yas-snippet-dirs
-      '(
-        "~/.emacs.d/el-get/rspec-mode/snippets"
-        "~/.emacs.d/el-get/yasnippet/snippets"
-        ))
-(yas-global-mode 1)
+      '("~/.emacs.d/el-get/yasnippet/snippets"))
+;;        "~/.emacs.d/el-get/rspec-mode/snippets"
+(yas/global-mode 1)
+
 
 ;; anything
 (require 'anything-config)

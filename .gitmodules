@@ -1,3 +1,6 @@
 [submodule "utilities/auto-save-buffers-enhanced"]
 	path = utilities/auto-save-buffers-enhanced
 	url = https://github.com/kentaro/auto-save-buffers-enhanced.git
+[submodule "utilities/yasnippets-rspec"]
+	path = utilities/yasnippets-rspec
+	url = git@github.com:tumf/yasnippets-rspec.git

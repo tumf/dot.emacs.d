@@ -9,7 +9,10 @@
 (add-to-list 'auto-mode-alist '("Berksfile$" . ruby-mode))
 
 ;; rspec
-(add-hook 'rspec-mode-hook
-          '(lambda ()
-             (local-set-key "\C-c\C-c" 'rspec-verify-single)))
-
+(require 'rspec-mode)
+(load-library (concat "~/.emacs.d/utilities" "/yasnippets-rspec/setup.el"))
+;;(add-hook 'rspec-mode-hook
+;;          '(lambda ()
+;;             (local-set-key "\C-c\C-c" 'rspec-verify-single)))
+;;(eval-after-load 'rspec-mode '(rspec-install-snippets))
+;;(yas/load-directory "~/.emacs.d/el-get/rspec-mode/snippets")
