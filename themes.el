@@ -1,5 +1,6 @@
 ;; (Theme) ;;
-(load-theme 'solarized-dark t)
+; (load-theme 'solarized-dark t)
+(load-theme 'dichromacy t)
 
 
 ;; Font
