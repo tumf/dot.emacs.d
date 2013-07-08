@@ -3,6 +3,13 @@
 (push "~/.emacs.d" load-path)
 (push "~/.emacs.d/bin" exec-path)
 
+(server-start)
+(set-language-environment 'Japanese)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(setq default-buffer-file-coding-system 'utf-8)
+(prefer-coding-system 'utf-8-unix)
 
 ;; Do not show the splash screen or message
 (setq inhibit-splash-screen t)
