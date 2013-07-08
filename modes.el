@@ -11,6 +11,7 @@
 ;; rspec
 (require 'rspec-mode)
 (load-library (concat "~/.emacs.d/utilities" "/yasnippets-rspec/setup.el"))
+
 ;;(add-hook 'rspec-mode-hook
 ;;          '(lambda ()
 ;;             (local-set-key "\C-c\C-c" 'rspec-verify-single)))
