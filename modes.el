@@ -11,6 +11,12 @@
 ;; rspec
 (require 'rspec-mode)
 (load-library (concat "~/.emacs.d/utilities" "/yasnippets-rspec/setup.el"))
+(global-set-key "\C-c\C-c" 'rspec-verify-single)
+
+ ;;; rhtml-mode
+(require 'rhtml-mode)
+(add-hook 'rhtml-mode-hook
+          (lambda () (rinari-launch)))
 
 ;;(add-hook 'rspec-mode-hook
 ;;          '(lambda ()
