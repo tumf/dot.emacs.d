@@ -33,6 +33,7 @@
         ;; Utilities
         ;;deft lusty-explorer profile-dotemacs sunrise-commander elim perspective
         shell-command
+        ack
         ;;emacs-w3m
 
         ;; Editing
