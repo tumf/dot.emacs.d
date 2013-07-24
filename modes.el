@@ -23,6 +23,12 @@
 ;;             (local-set-key "\C-c\C-c" 'rspec-verify-single)))
 ;;(eval-after-load 'rspec-mode '(rspec-install-snippets))
 ;;(yas/load-directory "~/.emacs.d/el-get/rspec-mode/snippets")
+(defadvice rspec-compile (around rspec-compile-around)
+  "Use BASH shell for running the specs because of ZSH issues."
+  (let ((shell-file-name "/bin/bash"))
+    ad-do-it))
+(ad-activate 'rspec-compile)
+
 (defun php-indent-hook()
   (c-set-style "stroustrup")
   (setq indent-tabs-mode nil)
