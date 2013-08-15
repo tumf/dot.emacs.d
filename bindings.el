@@ -6,7 +6,7 @@
 (global-set-key "\M-g" 'goto-line)
 (global-set-key "\C-w" 'kill-region)
 
-(global-set-key "\C-c\C-v" 'magit-status)
+(global-set-key (kbd "C-c v") 'magit-status)
 
 ;; ウインドウを表示する
 ;; http://openlab.dino.co.jp/2007/11/20/110609148.html
