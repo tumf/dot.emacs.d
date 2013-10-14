@@ -8,6 +8,10 @@
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Berksfile$" . ruby-mode))
 
+;; multi-mode
+(load-library "~/.emacs.d/modes/php-htm-mode/multi-mode.el")
+(load-library "~/.emacs.d/modes/php-htm-mode/php-htm-mode.el")
+
 ;; rspec
 (require 'rspec-mode)
 (load-library (concat "~/.emacs.d/utilities" "/yasnippets-rspec/setup.el"))
