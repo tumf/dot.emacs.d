@@ -8,6 +8,10 @@
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Berksfile$" . ruby-mode))
 
+;; chef
+(push "~/.emacs.d/modes/chef-mode" load-path)
+(require 'chef-mode)
+
 ;; multi-mode
 (load-library "~/.emacs.d/modes/php-htm-mode/multi-mode.el")
 (load-library "~/.emacs.d/modes/php-htm-mode/php-htm-mode.el")
