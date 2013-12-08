@@ -1,5 +1,6 @@
 ;;(push "/usr/local/bin" exec-path)
 ;;https://github.com/dholm/dotemacs/blob/master/.emacs.d/init.el
+(cd "~/")
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
 (unless (require 'el-get nil 'noerror)
