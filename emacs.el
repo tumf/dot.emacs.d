@@ -48,3 +48,7 @@
       display-time-day-and-date t)
 (display-time)
 (blink-cursor-mode t)
+
+;;行番号表示
+(require 'linum)
+(global-linum-mode)
