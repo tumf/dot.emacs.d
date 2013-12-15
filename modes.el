@@ -18,6 +18,7 @@
 (load-library "~/.emacs.d/modes/php-htm-mode/php-htm-mode.el")
 
 ;; rspec
+(push "~/.emacs.d/modes/rspec-mode" load-path)
 (require 'rspec-mode)
 (load-library (concat "~/.emacs.d/utilities" "/yasnippets-rspec/setup.el"))
 (global-set-key "\C-c\C-c" 'rspec-verify-single)

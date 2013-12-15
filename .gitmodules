@@ -10,3 +10,6 @@
 [submodule "modes/php-htm-mode"]
 	path = modes/php-htm-mode
 	url = git://github.com/traceypooh/php-htm-mode.git
+[submodule "modes/rspec-mode"]
+	path = modes/rspec-mode
+	url = git@github.com:tumf/rspec-mode.git
