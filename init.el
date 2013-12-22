@@ -22,6 +22,7 @@
         yasnippet auto-complete-yasnippet
         ;; Modes
         ruby-mode rvm rinari haml-mode rhtml-mode
+        ruby-electric
         php-mode
         markdown-mode
         yaml-mode
