@@ -82,9 +82,12 @@
       anything-c-source-files-in-current-dir
       anything-c-source-recentf
       anything-c-source-file-name-history
-      anything-c-source-emacs-commands
-      ))
+      anything-c-source-emacs-commands))
 
+
+;; auto-complete
+(require 'auto-complete-config)
+(global-auto-complete-mode 1)
 
 (defun set-exec-path-from-shell-PATH ()
   "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell.
