@@ -17,7 +17,6 @@
         ;;auto-complete cedet dtrt-indent ecb flymake-cursor
         ;;google-c-style smart-tab ensime scion pymacs jedi perl-completion
         yasnippet auto-complete-yasnippet
-	
         ;; Modes
         ruby-mode rvm rinari haml-mode rhtml-mode
         php-mode
