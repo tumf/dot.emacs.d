@@ -16,6 +16,7 @@
       '(;; Code helpers
         ;;auto-complete cedet dtrt-indent ecb flymake-cursor
         ;;google-c-style smart-tab ensime scion pymacs jedi perl-completion
+        google-c-style
         auto-complete
         auto-complete-ruby
         yasnippet auto-complete-yasnippet
