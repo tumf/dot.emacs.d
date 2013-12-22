@@ -50,5 +50,5 @@
 (blink-cursor-mode t)
 
 ;;行番号表示
-(require 'linum)
-(global-linum-mode)
+;;(require 'linum)
+;;(global-linum-mode)
