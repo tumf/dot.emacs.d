@@ -65,6 +65,7 @@
       '(
         "~/.emacs.d/el-get/yasnippet/snippets"
         "~/.emacs.d/el-get/rspec-mode/snippets"
+        "~/.emacs.d/snippets/rails/rails-snippets"
         ))
 
 (yas/global-mode 1)

@@ -13,3 +13,6 @@
 [submodule "modes/rspec-mode"]
 	path = modes/rspec-mode
 	url = git@github.com:tumf/rspec-mode.git
+[submodule "snippets/rails"]
+	path = snippets/rails
+	url = https://github.com/eschulte/yasnippets-rails.git
