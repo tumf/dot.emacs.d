@@ -11,8 +11,8 @@
 (add-to-list 'auto-mode-alist '("Berksfile$" . ruby-mode))
 
 ;; chef
-(push "~/.emacs.d/modes/chef-mode" load-path)
-(require 'chef-mode)
+;;(push "~/.emacs.d/modes/chef-mode" load-path)
+;;(require 'chef-mode)
 
 ;; multi-mode
 (load-library "~/.emacs.d/modes/php-htm-mode/multi-mode.el")
