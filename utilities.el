@@ -31,8 +31,10 @@
 
 ;; スペースは全角のみを可視化
 (setq whitespace-space-regexp "\\(\u3000+\\)")
+
 ;; 保存前に自動でクリーンアップ
-(setq whitespace-action '(auto-cleanup))
+;; (setq whitespace-action '(auto-cleanup))
+
 (global-whitespace-mode 1)
 (defvar my/bg-color "#232323")
 (set-face-attribute 'whitespace-trailing nil
