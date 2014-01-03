@@ -26,6 +26,7 @@
         php-mode
         markdown-mode
         yaml-mode
+        multiple-cursors smartrep
         ;;gnuplot-mode haskell-mode js2-mode markdown-mode nxhtml rainbow-mode
         ;;wc-mode python-mode pylookup slime php-mode scala-mode2 cperl-mode
         ;;jinja rvm
