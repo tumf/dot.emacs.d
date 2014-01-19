@@ -3,7 +3,9 @@
 (push "~/.emacs.d" load-path)
 (push "~/.emacs.d/bin" exec-path)
 
-(server-start)
+(require 'server)
+(or (server-running-p)
+    (server-start))
 (set-language-environment 'Japanese)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
