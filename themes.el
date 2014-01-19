@@ -1,11 +1,10 @@
 ;; (Theme) ;;
-; (load-theme 'solarized-dark t)
-(load-theme 'dichromacy t)
 
 
 ;; Font
 ;; from http://sakito.jp/emacs/emacs23.html
 (when (display-graphic-p)
+  (load-theme 'solarized-dark t)
   (create-fontset-from-ascii-font "Menlo-12:weight=normal:slant=normal" nil "menlokakugo")
   (set-fontset-font "fontset-menlokakugo"
                     'unicode
