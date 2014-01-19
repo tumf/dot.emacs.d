@@ -59,18 +59,6 @@
 (setq auto-save-buffers-enhanced-exclude-regexps '("^/ssh:" "/sudo:" "/multi:"))
 
 
-;; yasnippets
-(require 'yasnippet)
-(setq yas-snippet-dirs
-      '(
-        "~/.emacs.d/el-get/yasnippet/snippets"
-        "~/.emacs.d/el-get/rspec-mode/snippets"
-        "~/.emacs.d/snippets/rails/rails-snippets"
-        ))
-
-(yas/global-mode 1)
-
-
 ;; anything
 (require 'anything-config)
 ;;(require 'anything-c-yasnippet)
@@ -86,9 +74,37 @@
       anything-c-source-emacs-commands))
 
 
+;; yasnippets
+(require 'yasnippet)
+;;(setq yas-snippet-dirs
+;;      '(
+;;        "~/.emacs.d/snippets"
+;;        ))
+(setq yas-snippet-dirs
+      '(
+        "~/.emacs.d/snippets"
+        "~/.emacs.d/el-get/yasnippet/snippets"
+        ;;"~/.emacs.d/el-get/rspec-mode/snippets"
+        ;;"~/.emacs.d/snippets/rails/rails-snippets"
+        ))
+(yas/global-mode 1)
+
 ;; auto-complete
-(require 'auto-complete-config)
-(global-auto-complete-mode 1)
+;;(require 'auto-complete-config)
+;;(global-auto-complete-mode 1)
+(when (require 'auto-complete-config nil t)
+  (ac-config-default)
+  (setq ac-auto-start 1)
+  (setq ac-dwim t)
+  (setq ac-use-menu-map t) ;; C-n/C-pで候補選択可能
+  (add-to-list 'ac-sources 'ac-source-yasnippet) ;; 常にYASnippetを補完候補に
+;;  (setq ac-dictionary-directories "~/.emacs.d/elisp/auto-complete/ac-dict") ;; 辞書ファイルのディレクトリ
+;;  (setq ac-comphist-file "~/.emacs.d/elisp/auto-complete/ac-comphist.dat") ;; 補完履歴のキャッシュ先
+)
+
+
+
+
 
 (defun set-exec-path-from-shell-PATH ()
   "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell.
