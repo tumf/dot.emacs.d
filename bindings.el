@@ -6,6 +6,7 @@
 (global-set-key "\M-g" 'goto-line)
 (global-set-key "\C-w" 'kill-region)
 
+(require 'magit)
 (global-set-key (kbd "C-c v") 'magit-status)
 
 ;; ウインドウを表示する
