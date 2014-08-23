@@ -10,47 +10,48 @@
 ;;ファイルの最後に改行を挿入する
 (setq require-final-newline t)
 
-(require 'whitespace)
-(setq whitespace-style '(face           ; faceで可視化
-                         trailing       ; 行末
-                         tabs           ; タブ
-                         spaces         ; スペース
-                         empty          ; 先頭/末尾の空行
-                         space-mark     ; 表示のマッピング
-                         tab-mark
-                         ))
-
-(setq whitespace-display-mappings
-      '((space-mark ?\u3000 [?\u25a1])
-        ;; WARNING: the mapping below has a problem.
-        ;; When a TAB occupies exactly one column, it will display the
-        ;; character ?\xBB at that column followed by a TAB which goes to
-        ;; the next TAB column.
-        ;; If this is a problem for you, please, comment the line below.
-        (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])))
-
-;; スペースは全角のみを可視化
-(setq whitespace-space-regexp "\\(\u3000+\\)")
+;;(require 'whitespace)
+;;(setq whitespace-style '(face           ; faceで可視化
+;;                         trailing       ; 行末
+;;                         tabs           ; タブ
+;;                         spaces         ; スペース
+;;                         empty          ; 先頭/末尾の空行
+;;                         space-mark     ; 表示のマッピング
+;;                         tab-mark
+;;                         ))
+;;
+;;(setq whitespace-display-mappings
+;;      '((space-mark ?\u3000 [?\u25a1])
+;;        ;; WARNING: the mapping below has a problem.
+;;        ;; When a TAB occupies exactly one column, it will display the
+;;        ;; character ?\xBB at that column followed by a TAB which goes to
+;;        ;; the next TAB column.
+;;        ;; If this is a problem for you, please, comment the line below.
+;;        (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])))
+;;
+;;;; スペースは全角のみを可視化
+;;(setq whitespace-space-regexp "\\(\u3000+\\)")
 
 ;; 保存前に自動でクリーンアップ
 ;; (setq whitespace-action '(auto-cleanup))
 
-(global-whitespace-mode 1)
-(defvar my/bg-color "#232323")
-(set-face-attribute 'whitespace-trailing nil
-                    :background my/bg-color
-                    :foreground "DeepPink"
-                    :underline t)
-(set-face-attribute 'whitespace-tab nil
-                    :background my/bg-color
-                    :foreground "LightSkyBlue"
-                    :underline t)
-(set-face-attribute 'whitespace-space nil
-                    :background my/bg-color
-                    :foreground "GreenYellow"
-                    :weight 'bold)
-(set-face-attribute 'whitespace-empty nil
-                    :background my/bg-color)
+;;(global-whitespace-mode 1)
+;;(defvar my/bg-color "#232323")
+;;(set-face-attribute 'whitespace-trailing nil
+;;                    :background my/bg-color
+;;                    :foreground "DeepPink"
+;;                    :underline t)
+;;(set-face-attribute 'whitespace-tab nil
+;;                    :background my/bg-color
+;;                    :foreground "LightSkyBlue"
+;;                    :underline t)
+;;(set-face-attribute 'whitespace-space nil
+;;                    :background my/bg-color
+;;                    :foreground "GreenYellow"
+;;                    :weight 'bold)
+;;(set-face-attribute 'whitespace-empty nil
+;;                    :background my/bg-color)
+;;
 
 ;; AutoSaveBuffersEnhanced
 (push "~/.emacs.d/utilities/auto-save-buffers-enhanced" load-path)
@@ -97,11 +98,15 @@
   (setq ac-auto-start 1)
   (setq ac-dwim t)
   (setq ac-use-menu-map t) ;; C-n/C-pで候補選択可能
+  ;;(delq 'ac-source-yasnippet ac-sources)
   (add-to-list 'ac-sources 'ac-source-yasnippet) ;; 常にYASnippetを補完候補に
-;;  (setq ac-dictionary-directories "~/.emacs.d/elisp/auto-complete/ac-dict") ;; 辞書ファイルのディレクトリ
-;;  (setq ac-comphist-file "~/.emacs.d/elisp/auto-complete/ac-comphist.dat") ;; 補完履歴のキャッシュ先
+  (setq ac-dictionary-directories "~/.emacs.d/work/auto-complete/ac-dict") ;; 辞書ファイルのディレクトリ
+  (setq ac-comphist-file "~/.emacs.d/work/auto-complete/ac-comphist.dat") ;; 補完履歴のキャッシュ先
 )
-
+;;; yasnippetのbindingを指定するとエラーが出るので回避する方法。
+(setf (symbol-function 'yas-active-keys)
+      (lambda ()
+        (remove-duplicates (mapcan #'yas--table-all-keys (yas--get-snippet-tables)))))
 
 
 
