@@ -1,7 +1,7 @@
 ;;(push "/usr/local/bin" exec-path)
 ;;https://github.com/dholm/dotemacs/blob/master/.emacs.d/init.el
 (setq initial-frame-alist
-      '((top . 1) (left . 1) (width . 160) (height . 65)))
+      '((top . 1) (left . 1) (width . 160) (height . 60)))
 (cd "~/")
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
