@@ -53,7 +53,8 @@
         anything
 
         ;; Themes
-        solarized-theme))
+        color-theme-solarized
+	))
 (el-get 'sync el-get-sources)
 
 (global-set-key "\C-x\C-m" 'execute-extended-command)
