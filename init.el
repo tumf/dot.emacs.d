@@ -1,3 +1,8 @@
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+
 ;;(push "/usr/local/bin" exec-path)
 ;;https://github.com/dholm/dotemacs/blob/master/.emacs.d/init.el
 (setq initial-frame-alist
