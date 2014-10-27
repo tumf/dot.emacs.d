@@ -1,6 +1,6 @@
 ;; Path
 (push "/usr/local/bin" exec-path)
-(push "~/.emacs.d" load-path)
+;; (push "~/.emacs.d" load-path)
 (push "~/.emacs.d/bin" exec-path)
 
 (require 'server)
@@ -52,5 +52,5 @@
 (blink-cursor-mode t)
 
 ;;行番号表示
-;;(require 'linum)
-;;(global-linum-mode)
+(require 'linum)
+(global-linum-mode)

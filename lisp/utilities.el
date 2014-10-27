@@ -1,6 +1,46 @@
 ;; (Utilities) ;;
 (push "~/.emacs.d/utilities" load-path)
 
+;; dirtree
+;;(autoload 'dirtree "dirtree" "Add directory to tree view" t)
+(setq  dirtree-windata '(frame left 0.16 nil))
+
+(require 'dirtree)
+
+(defmacro my/if-dirtree-window-exist (win &rest on-t on-nil)
+  `(let* ((buffer (get-buffer dirtree-buffer))
+          (,win (and buffer
+                    (get-buffer-window buffer))))
+         (if ,win
+             ,@on-t
+           ,@on-nil)))
+
+(global-set-key [f8]
+                #'(lambda ()
+                   (interactive)
+                   (my/if-dirtree-window-exist window
+                                               (delete-window window)
+                                               (dirtree default-directory nil))))
+
+(defun my/dirtree-update ()
+  (my/if-dirtree-window-exist window
+                              (unless (equal (buffer-name) dirtree-buffer)
+                                (dirtree default-directory nil))))
+
+(defadvice switch-to-buffer (after dirtree-update (buffer-or-name
+                                                   &optional
+                                                   norecord
+                                                   force-same-window))
+  (my/dirtree-update))
+(defadvice quit-window (after dirtree-update (&optional kill window))
+  (my/dirtree-update))
+(defadvice windmove-do-window-select (after dirtree-update (dir &optional arg window))
+  (my/dirtree-update))
+
+(ad-activate 'switch-to-buffer)
+(ad-activate 'quit-window)
+(ad-activate 'windmove-do-window-select)
+
 ;;jaspace
 (require 'jaspace)
 
