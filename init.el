@@ -54,6 +54,11 @@
 
         ;; Themes
         color-theme-solarized
+
+        ;; dirtree
+        ;;dirtree
+        tree-mode
+        windata
 	))
 (el-get 'sync el-get-sources)
 
