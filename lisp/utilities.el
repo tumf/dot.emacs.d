@@ -42,7 +42,7 @@
 (ad-activate 'windmove-do-window-select)
 
 ;;jaspace
-(require 'jaspace)
+;; (require 'jaspace)
 
 (require 'saveplace)
 (setq-default save-place t)
@@ -50,32 +50,47 @@
 ;;ファイルの最後に改行を挿入する
 (setq require-final-newline t)
 
-;;(require 'whitespace)
-;;(setq whitespace-style '(face           ; faceで可視化
-;;                         trailing       ; 行末
-;;                         tabs           ; タブ
-;;                         spaces         ; スペース
-;;                         empty          ; 先頭/末尾の空行
-;;                         space-mark     ; 表示のマッピング
-;;                         tab-mark
-;;                         ))
-;;
-;;(setq whitespace-display-mappings
-;;      '((space-mark ?\u3000 [?\u25a1])
-;;        ;; WARNING: the mapping below has a problem.
-;;        ;; When a TAB occupies exactly one column, it will display the
-;;        ;; character ?\xBB at that column followed by a TAB which goes to
-;;        ;; the next TAB column.
-;;        ;; If this is a problem for you, please, comment the line below.
-;;        (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])))
-;;
+(require 'whitespace)
+(setq whitespace-style '(face           ; faceで可視化
+                         trailing       ; 行末
+                         tabs           ; タブ
+                         spaces         ; スペース
+                         empty          ; 先頭/末尾の空行
+                         space-mark     ; 表示のマッピング
+                         tab-mark
+                         ))
+
+(setq whitespace-display-mappings
+      '((space-mark ?\u3000 [?\u25a1])
+        ;; WARNING: the mapping below has a problem.
+        ;; When a TAB occupies exactly one column, it will display the
+        ;; character ?\xBB at that column followed by a TAB which goes to
+        ;; the next TAB column.
+        ;; If this is a problem for you, please, comment the line below.
+        (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])))
+
 ;;;; スペースは全角のみを可視化
-;;(setq whitespace-space-regexp "\\(\u3000+\\)")
+(setq whitespace-space-regexp "\\(\u3000+\\)")
 
 ;; 保存前に自動でクリーンアップ
 ;; (setq whitespace-action '(auto-cleanup))
+(defun delete-trailing-whitespace-except-current-line ()
+  (interactive)
+  (let ((begin (line-beginning-position))
+        (end (line-end-position)))
+    (save-excursion
+      (when (< (point-min) begin)
+        (save-restriction
+          (narrow-to-region (point-min) (1- begin))
+          (delete-trailing-whitespace)))
+      (when (> (point-max) end)
+        (save-restriction
+          (narrow-to-region (1+ end) (point-max))
+          (delete-trailing-whitespace))))))
+(setq whitespace-action '(delete-trailing-whitespace-except-current-line))
 
-;;(global-whitespace-mode 1)
+
+(global-whitespace-mode 1)
 ;;(defvar my/bg-color "#232323")
 ;;(set-face-attribute 'whitespace-trailing nil
 ;;                    :background my/bg-color
