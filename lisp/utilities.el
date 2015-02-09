@@ -112,8 +112,8 @@
 (push "~/.emacs.d/utilities/auto-save-buffers-enhanced" load-path)
 (require 'auto-save-buffers-enhanced)
 (auto-save-buffers-enhanced t)
-(setq auto-save-buffers-enhanced-exclude-regexps '("^/ssh:" "/sudo:" "/multi:"))
-
+(setq auto-save-buffers-enhanced-exclude-regexps '("^/ssh:" "/sudo:" "/multi:" "COMMIT_EDITMSG"))
+(setq auto-save-buffers-enhanced-interval 2)
 
 ;; anything
 (require 'anything-config)
