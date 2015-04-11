@@ -42,6 +42,12 @@
     ad-do-it))
 (ad-activate 'rspec-compile)
 
+
+;; ruby-electric.el
+(require 'ruby-electric)
+(add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
+(setq ruby-electric-expand-delimiters-list nil)
+
 ;;popwin
 (push '("*rspec-compilation*" :regexp t) popwin:special-display-config)
 
