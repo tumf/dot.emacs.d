@@ -87,10 +87,9 @@
         (save-restriction
           (narrow-to-region (1+ end) (point-max))
           (delete-trailing-whitespace))))))
-(setq whitespace-action '(delete-trailing-whitespace-except-current-line))
-
-
+(add-hook 'before-save-hook 'delete-trailing-whitespace-except-current-line)
 (global-whitespace-mode 1)
+
 ;;(defvar my/bg-color "#232323")
 ;;(set-face-attribute 'whitespace-trailing nil
 ;;                    :background my/bg-color
