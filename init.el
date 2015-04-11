@@ -64,6 +64,7 @@
         ;;dirtree
         tree-mode
         windata
+        popwin
 	))
 (el-get 'sync el-get-sources)
 
@@ -87,3 +88,17 @@
     (load-file (expand-file-name "~/.emacs.local"))
   nil)
 
+
+;; trampの設定: /sudo:
+(add-to-list 'tramp-default-proxies-alist
+             '(nil "\\`root\\'" "/ssh:%h:"))
+(add-to-list 'tramp-default-proxies-alist
+             '("localhost" nil nil))
+(add-to-list 'tramp-default-proxies-alist
+             '((regexp-quote (system-name)) nil nil))
+
+
+;; popwinの設定
+(require 'popwin)
+(setq display-buffer-function 'popwin:display-buffer)
+(setq popwin:popup-window-position 'bottom)

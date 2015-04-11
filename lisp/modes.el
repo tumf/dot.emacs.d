@@ -42,6 +42,9 @@
     ad-do-it))
 (ad-activate 'rspec-compile)
 
+;;popwin
+(push '("*rspec-compilation*" :regexp t) popwin:special-display-config)
+
 (defun php-indent-hook()
   (c-set-style "stroustrup")
   (setq indent-tabs-mode nil)
