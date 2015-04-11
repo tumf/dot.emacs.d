@@ -77,6 +77,14 @@
 (push "~/.emacs.d/lisp" load-path)
 (push "~/.emacs.d/bin" exec-path)
 
+
+
+;; popwinの設定
+(require 'popwin)
+(setq display-buffer-function 'popwin:display-buffer)
+(setq popwin:popup-window-position 'bottom)
+
+
 (load "emacs.el")
 (load "modes.el")
 (load "utilities.el")
@@ -97,9 +105,3 @@
              '("localhost" nil nil))
 (add-to-list 'tramp-default-proxies-alist
              '((regexp-quote (system-name)) nil nil))
-
-
-;; popwinの設定
-(require 'popwin)
-(setq display-buffer-function 'popwin:display-buffer)
-(setq popwin:popup-window-position 'bottom)
