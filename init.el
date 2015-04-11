@@ -30,6 +30,7 @@
         ;; Modes
         ruby-mode rvm haml-mode rhtml-mode
         ruby-electric
+        smart-newline
         php-mode
         markdown-mode
         yaml-mode

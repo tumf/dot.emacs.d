@@ -48,6 +48,11 @@
 (add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
 (setq ruby-electric-expand-delimiters-list nil)
 
+
+(add-hook 'ruby-mode-hook ;; or any major-mode-hooks
+  (lambda ()
+    (smart-newline-mode t)))
+
 ;;popwin
 (push '("*rspec-compilation*" :regexp t) popwin:special-display-config)
 
