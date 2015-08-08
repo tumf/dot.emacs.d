@@ -27,6 +27,7 @@
         auto-complete
         auto-complete-ruby
         yasnippet auto-complete-yasnippet
+        neotree
         ;; Modes
         ruby-mode rvm haml-mode rhtml-mode
         ruby-electric

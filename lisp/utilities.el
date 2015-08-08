@@ -175,3 +175,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     (setq exec-path (split-string path-from-shell path-separator))))
 
 (set-exec-path-from-shell-PATH)
+
+;;; neotree
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
