@@ -1,7 +1,8 @@
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(require 'package) ;; You might already have this line
 
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
 
 ;;(push "/usr/local/bin" exec-path)
 ;;https://github.com/dholm/dotemacs/blob/master/.emacs.d/init.el
