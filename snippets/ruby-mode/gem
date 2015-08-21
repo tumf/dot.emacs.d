@@ -1,6 +1,0 @@
-# name: gem '...'
-# group: Gemfile
-# key: gem
-# --
-gem "$0"
-
