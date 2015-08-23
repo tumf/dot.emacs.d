@@ -238,8 +238,10 @@
 ;; shell-pop
 ;;
 (require 'shell-pop)
+
 (custom-set-variables
- '(shell-pop-shell-type (quote ("ansi-term" "*shell-pop-ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
+ '(shell-pop-shell-type (quote ("multi-term" "*terminal<1>*" '(lambda () (multi-term)))))
+ '(shell-pop-set-internal-mode "multi-term")
  '(shell-pop-term-shell "/bin/zsh")
  '(shell-pop-universal-key "C-t")
  '(shell-pop-window-height 30)
