@@ -244,9 +244,17 @@
  '(shell-pop-shell-type (quote ("multi-term" "*terminal<1>*" '(lambda () (multi-term)))))
  '(shell-pop-set-internal-mode "multi-term")
  '(shell-pop-term-shell "/bin/zsh")
- '(shell-pop-universal-key "C-t")
+ '(shell-pop-universal-key "<f8>")
  '(shell-pop-window-height 30)
  '(shell-pop-window-position "bottom"))
 
-(desktop-save-mode 1)
+
+;;
+;; yasnippet
+;;
+;;(add-to-list 'load-path
+;;              "~/.emacs.d/plugins/yasnippet")
+;;(require 'yasnippet)
+;;(yas-global-mode 1)
+
 ;;
