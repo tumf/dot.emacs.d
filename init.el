@@ -17,6 +17,8 @@
                       nodejs-repl
                       multi-term shell-pop
                       color-theme
+                      ;;yasnippet yasnippet-bundle
+                      ;;ansible
                       ))
 
 (package-refresh-contents)
