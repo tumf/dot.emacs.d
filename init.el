@@ -72,6 +72,7 @@
 (global-set-key "\C-cg" 'magit-status)
 (global-set-key "\M-g" 'goto-line)
 (global-set-key "\C-w" 'kill-region)
+(define-key global-map "\C-\\" nil) ; \C-\の日本語入力の設定を無効にする
 
 (setq-default tab-width 2 indent-tabs-mode nil)
 
