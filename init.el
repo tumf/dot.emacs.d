@@ -16,8 +16,10 @@
                       php-mode
                       nodejs-repl
                       multi-term shell-pop
+                      color-theme
                       ))
 
+(package-refresh-contents)
 (require 'package) ;; You might already have this line
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
