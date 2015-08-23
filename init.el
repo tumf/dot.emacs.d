@@ -15,6 +15,7 @@
                       flycheck
                       php-mode
                       nodejs-repl
+                      multi-term shell-pop
                       ))
 
 (require 'package) ;; You might already have this line
@@ -215,3 +216,29 @@
 (add-hook 'ruby-mode-hook ;; or any major-mode-hooks
   (lambda ()
   (smart-newline-mode t)))
+
+;;
+;; Multi-term
+;;
+(require 'multi-term)
+(setq system-uses-terminfo nil)
+(setq shell-file-name "/bin/zsh")
+(setq multi-term-program shell-file-name)
+(autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(global-set-key (kbd "C-c n") 'multi-term-next)
+(global-set-key (kbd "C-c p") 'multi-term-prev)
+;;(global-set-key (kbd "C-c t") '(lambda ()
+;;                                (interactive)
+;;                                (multi-term)))
+
+;;
+;; shell-pop
+;;
+(require 'shell-pop)
+(custom-set-variables
+ '(shell-pop-shell-type (quote ("ansi-term" "*shell-pop-ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
+ '(shell-pop-term-shell "/bin/zsh")
+ '(shell-pop-universal-key "C-t")
+ '(shell-pop-window-height 30)
+ '(shell-pop-window-position "bottom"))
