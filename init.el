@@ -14,6 +14,7 @@
                       smart-newline
                       flycheck
                       php-mode
+                      nodejs-repl
                       ))
 
 (require 'package) ;; You might already have this line
