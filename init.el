@@ -9,7 +9,7 @@
                       smex
                       scpaste
                       wakatime-mode
-                      helm helm-descbinds helm-ag
+                      helm helm-descbinds helm-ag helm-git
                       markdown-mode
                       smart-newline
                       flycheck
