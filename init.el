@@ -242,3 +242,6 @@
  '(shell-pop-universal-key "C-t")
  '(shell-pop-window-height 30)
  '(shell-pop-window-position "bottom"))
+
+(desktop-save-mode 1)
+;;
