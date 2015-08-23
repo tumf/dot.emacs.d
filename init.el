@@ -13,6 +13,7 @@
                       markdown-mode
                       smart-newline
                       flycheck
+                      php-mode
                       ))
 
 (require 'package) ;; You might already have this line
