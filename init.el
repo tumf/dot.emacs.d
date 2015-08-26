@@ -260,3 +260,13 @@
 ;;(yas-global-mode 1)
 
 ;;
+;; auto-insert
+;;
+(require 'autoinsert)
+(auto-insert-mode)
+(setq auto-insert-directory "~/.emacs.d/insert/")
+(add-to-list 'auto-insert-alist
+             '("\\.rb$" . "ruby.rb")
+             '("Dockerfile" . "Dockerfile"))
+
+;;
