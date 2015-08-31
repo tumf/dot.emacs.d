@@ -272,4 +272,7 @@
              '("\\.rb$" . "ruby.rb")
              '("Dockerfile" . "Dockerfile"))
 
+;; セーブ前に空白を削除
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;;
