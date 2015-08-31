@@ -17,6 +17,7 @@
                       nodejs-repl
                       multi-term shell-pop
                       color-theme
+                      json-mode
                       ;;yasnippet yasnippet-bundle
                       ;;ansible
                       ))
