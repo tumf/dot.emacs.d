@@ -20,6 +20,7 @@
                       yaml-mode
                       json-mode
                       auto-save-buffers-enhanced
+                      auto-complete
                       ;;yasnippet yasnippet-bundle
                       ;;ansible
                       ))
@@ -322,5 +323,9 @@
 
 ;;ファイルの最後に改行を挿入する
 (setq require-final-newline t)
+
+;; auto-complete
+(ac-config-default)
+(setq ac-use-menu-map t)
 
 ;;
