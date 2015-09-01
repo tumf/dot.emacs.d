@@ -22,7 +22,7 @@
                       auto-complete
                       web-mode
                       jade-mode
-                      php-mode php-completion-mode
+                      php-mode php-completion
                       neotree
                       ;;yasnippet yasnippet-bundle
                       ;;ansible
