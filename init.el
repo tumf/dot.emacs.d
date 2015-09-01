@@ -23,6 +23,7 @@
                       web-mode
                       jade-mode
                       php-mode php-completion-mode
+                      neotree
                       ;;yasnippet yasnippet-bundle
                       ;;ansible
                       ))
@@ -365,4 +366,9 @@
                                ac-source-php-completion
                                ac-source-filename
                                ))))
+;;; neotree
+(require 'neotree)
+(global-set-key [f9] 'neotree-toggle)
+
+
 ;;
