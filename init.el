@@ -21,6 +21,7 @@
                       auto-save-buffers-enhanced
                       auto-complete
                       web-mode
+                      jade-mode
                       php-mode php-completion-mode
                       ;;yasnippet yasnippet-bundle
                       ;;ansible
