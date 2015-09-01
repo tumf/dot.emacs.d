@@ -13,7 +13,6 @@
                       markdown-mode
                       smart-newline
                       flycheck
-                      php-mode
                       nodejs-repl
                       multi-term shell-pop
                       color-theme
@@ -21,6 +20,8 @@
                       json-mode
                       auto-save-buffers-enhanced
                       auto-complete
+                      web-mode
+                      php-mode php-completion-mode
                       ;;yasnippet yasnippet-bundle
                       ;;ansible
                       ))
@@ -328,4 +329,39 @@
 (ac-config-default)
 (setq ac-use-menu-map t)
 
+;; web-mode
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.erb$"     . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?$"     . web-mode))
+(add-to-list 'auto-mode-alist '("\\.php$"     . web-mode))
+
+(defun my-web-mode-hook ()
+  "Hooks for Web mode."
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-enable-current-column-highlight t)
+  (setq web-mode-ac-sources-alist
+        '(("css" . (ac-source-words-in-buffer ac-source-css-property))
+          ("html" . (ac-source-words-in-buffer ac-source-abbrev))
+          ("php" . (ac-source-php-completion
+                    ac-source-words-in-buffer
+                    ac-source-words-in-same-mode-buffers
+                    ac-source-dictionary))))
+
+  (setq web-mode-engines-alist
+        '(("php"    . "\\.php\\'")
+          ("blade"  . "\\.blade\\."))))
+(add-hook 'web-mode-hook  'my-web-mode-hook)
+
+;; php-mode-hook
+(add-hook 'php-mode-hook
+          (lambda ()
+            (require 'php-completion)
+            (php-completion-mode t)
+            (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
+            (make-local-variable 'ac-sources)
+            (setq ac-sources '(
+                               ac-source-words-in-same-mode-buffers
+                               ac-source-php-completion
+                               ac-source-filename
+                               ))))
 ;;
