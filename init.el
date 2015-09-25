@@ -317,6 +317,7 @@
           (delete-trailing-whitespace))))))
 (setq whitespace-action '(delete-trailing-whitespace-except-current-line))
 (global-whitespace-mode 1)
+(add-hook 'before-save-hook 'delete-trailing-whitespace-except-current-line)
 
 ;; AutoSaveBuffersEnhanced
 (require 'auto-save-buffers-enhanced)
