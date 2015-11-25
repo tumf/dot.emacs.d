@@ -24,6 +24,7 @@
                       jade-mode
                       php-mode php-completion
                       neotree
+                      ack
                       ;;yasnippet yasnippet-bundle
                       ;;ansible
                       ))
@@ -39,6 +40,9 @@
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+
+;; ido-mode をオフにする
+(ido-mode nil)
 
 ;;
 ;; 文字コードの設定
