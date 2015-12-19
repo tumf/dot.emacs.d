@@ -24,7 +24,7 @@
                       jade-mode
                       php-mode php-completion
                       neotree
-                      ;;yasnippet yasnippet-bundle
+                      yasnippet
                       ;;ansible
                       ))
 
@@ -370,5 +370,11 @@
 (require 'neotree)
 (global-set-key [f9] 'neotree-toggle)
 
+;;; yasnippet
+(require 'yasnippet)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"))
+;; yas起動
+(yas-global-mode 1)
 
 ;;
