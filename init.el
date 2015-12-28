@@ -25,6 +25,8 @@
                       php-mode php-completion
                       neotree
                       ack
+                      go-mode
+                      magit-gitflow
                       ;;yasnippet yasnippet-bundle
                       ;;ansible
                       ))
@@ -255,12 +257,25 @@
 (require 'shell-pop)
 
 (custom-set-variables
- '(shell-pop-shell-type (quote ("multi-term" "*terminal<1>*" '(lambda () (multi-term)))))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ack-command "/usr/local/bin/ack ")
  '(shell-pop-set-internal-mode "multi-term")
+ '(shell-pop-shell-type
+   (quote
+    ("multi-term" "*terminal<1>*"
+     (quote
+      (lambda nil
+        (multi-term))))))
  '(shell-pop-term-shell "/bin/zsh")
  '(shell-pop-universal-key "<f8>")
- '(shell-pop-window-height 30)
- '(shell-pop-window-position "bottom"))
+ '(shell-pop-window-position "bottom")
+ '(shell-pop-window-size 30)
+ '(wakatime-api-key "2469a33c-452a-42e3-8d71-772b3ac257ab")
+ '(wakatime-cli-path
+   "~/.pyenv/versions/2.6.9/lib/python2.6/site-packages/wakatime/cli.py"))
 
 
 ;;
@@ -376,4 +391,6 @@
 (global-set-key [f9] 'neotree-toggle)
 
 
+(require 'magit-gitflow)
+(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
 ;;
