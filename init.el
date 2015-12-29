@@ -35,7 +35,6 @@
 (require 'package) ;; You might already have this line
 (package-refresh-contents)
 
-(exec-path-from-shell-initialize)
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
@@ -45,6 +44,8 @@
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+
+(exec-path-from-shell-initialize)
 
 ;; ido-mode をオフにする
 (ido-mode nil)
