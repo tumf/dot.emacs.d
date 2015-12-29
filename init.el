@@ -1,6 +1,7 @@
 ;; my packages to be install
 (defvar my-packages '(
                       better-defaults
+                      exec-path-from-shell
                       paredit
                       idle-highlight-mode
                       ido-ubiquitous
@@ -31,8 +32,10 @@
                       ;;ansible
                       ))
 
-(package-refresh-contents)
 (require 'package) ;; You might already have this line
+(package-refresh-contents)
+
+(exec-path-from-shell-initialize)
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
@@ -391,12 +394,12 @@
 (require 'neotree)
 (global-set-key [f9] 'neotree-toggle)
 
-;;; yasnippet
-(require 'yasnippet)
-(setq yas-snippet-dirs
-      '("~/.emacs.d/snippets"))
-;; yas起動
-(yas-global-mode 1)
+;;;;; yasnippet
+;;(require 'yasnippet)
+;;(setq yas-snippet-dirs
+;;      '("~/.emacs.d/snippets"))
+;;;; yas起動
+;;(yas-global-mode 1)
 
 (require 'magit-gitflow)
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
