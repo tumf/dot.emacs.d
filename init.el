@@ -8,7 +8,7 @@
                       magit
                       smex
                       scpaste
-                      wakatime-mode
+                      ;;wakatime-mode
                       helm helm-descbinds helm-ag helm-git
                       markdown-mode
                       smart-newline
@@ -26,7 +26,6 @@
                       neotree
                       yasnippet
                       ack
-                      go-mode
                       magit-gitflow
                       ;;yasnippet yasnippet-bundle
                       ;;ansible
@@ -214,7 +213,7 @@
 (global-set-key (kbd "C-c v") 'magit-status)
 
 ;; wakatime-mode
-(global-wakatime-mode)
+;;(global-wakatime-mode)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -274,9 +273,10 @@
  '(shell-pop-universal-key "<f8>")
  '(shell-pop-window-position "bottom")
  '(shell-pop-window-size 30)
- '(wakatime-api-key "2469a33c-452a-42e3-8d71-772b3ac257ab")
- '(wakatime-cli-path
-   "~/.pyenv/versions/2.6.9/lib/python2.6/site-packages/wakatime/cli.py"))
+;; '(wakatime-api-key "2469a33c-452a-42e3-8d71-772b3ac257ab")
+;; '(wakatime-cli-path
+;; "~/.pyenv/versions/2.6.9/lib/python2.6/site-packages/wakatime/cli.py")
+)
 
 
 ;;
