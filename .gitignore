@@ -6,3 +6,8 @@ tramp
 elpa
 /ac-comphist.dat
 /.mc-lists.el
+/places
+flycheck_init.el
+/.emacs.desktop
+/ido.last
+/recentf

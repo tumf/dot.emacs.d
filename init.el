@@ -9,21 +9,70 @@
                       smex
                       scpaste
                       wakatime-mode
-                      helm helm-descbinds helm-ag
+                      helm helm-descbinds helm-ag helm-git
                       markdown-mode
                       smart-newline
                       flycheck
+                      nodejs-repl
+                      multi-term shell-pop
+                      color-theme
+                      yaml-mode
+                      json-mode
+                      auto-save-buffers-enhanced
+                      auto-complete
+                      web-mode
+                      jade-mode
+                      php-mode php-completion
+                      neotree
+                      yasnippet
+                      ack
+                      go-mode
+                      magit-gitflow
+                      ;;yasnippet yasnippet-bundle
+                      ;;ansible
                       ))
 
+(package-refresh-contents)
 (require 'package) ;; You might already have this line
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 (package-initialize)
+(package-install 'better-defaults)
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+
+;; ido-mode をオフにする
+(ido-mode nil)
+
+;;
+;; 文字コードの設定
+;;
+(setenv "LANG" "ja_JP.UTF-8")
+(set-language-environment 'utf-8)
+(prefer-coding-system 'utf-8)
+
+(cond
+ ((or (eq window-system 'mac) (eq window-system 'ns))
+  ;; Mac OS X の HFS+ ファイルフォーマットではファイル名は NFD (の様な物)で扱うため以下の設定をする必要がある
+  (require 'ucs-normalize)
+  (setq file-name-coding-system 'utf-8-hfs)
+  (setq locale-coding-system 'utf-8-hfs))
+ (or (eq system-type 'cygwin) (eq system-type 'windows-nt)
+     (setq file-name-coding-system 'utf-8)
+     (setq locale-coding-system 'utf-8)
+     ;; もしコマンドプロンプトを利用するなら sjis にする
+     ;; (setq file-name-coding-system 'sjis)
+     ;; (setq locale-coding-system 'sjis)
+     ;; 古い Cygwin だと EUC-JP にする
+     ;; (setq file-name-coding-system 'euc-jp)
+     ;; (setq locale-coding-system 'euc-jp)
+     )
+ (t
+  (setq file-name-coding-system 'utf-8)
+  (setq locale-coding-system 'utf-8)))
 
 ;; 外部コマンドのPATH
 ;; この設定が利用する主なコマンド `git` `ag`
@@ -40,6 +89,7 @@
 (global-set-key "\C-cg" 'magit-status)
 (global-set-key "\M-g" 'goto-line)
 (global-set-key "\C-w" 'kill-region)
+(define-key global-map "\C-\\" nil) ; \C-\の日本語入力の設定を無効にする
 
 (setq-default tab-width 2 indent-tabs-mode nil)
 
@@ -186,3 +236,168 @@
 (add-hook 'ruby-mode-hook ;; or any major-mode-hooks
   (lambda ()
   (smart-newline-mode t)))
+
+;;
+;; Multi-term
+;;
+(require 'multi-term)
+(setq system-uses-terminfo nil)
+(setq shell-file-name "/bin/zsh")
+(setq multi-term-program shell-file-name)
+(autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(global-set-key (kbd "C-c n") 'multi-term-next)
+(global-set-key (kbd "C-c p") 'multi-term-prev)
+;;(global-set-key (kbd "C-c t") '(lambda ()
+;;                                (interactive)
+;;                                (multi-term)))
+
+;;
+;; shell-pop
+;;
+(require 'shell-pop)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ack-command "/usr/local/bin/ack ")
+ '(shell-pop-set-internal-mode "multi-term")
+ '(shell-pop-shell-type
+   (quote
+    ("multi-term" "*terminal<1>*"
+     (quote
+      (lambda nil
+        (multi-term))))))
+ '(shell-pop-term-shell "/bin/zsh")
+ '(shell-pop-universal-key "<f8>")
+ '(shell-pop-window-position "bottom")
+ '(shell-pop-window-size 30)
+ '(wakatime-api-key "2469a33c-452a-42e3-8d71-772b3ac257ab")
+ '(wakatime-cli-path
+   "~/.pyenv/versions/2.6.9/lib/python2.6/site-packages/wakatime/cli.py"))
+
+
+;;
+;; yasnippet
+;;
+;;(add-to-list 'load-path
+;;              "~/.emacs.d/plugins/yasnippet")
+;;(require 'yasnippet)
+;;(yas-global-mode 1)
+
+;;
+;; auto-insert
+;;
+(require 'autoinsert)
+(auto-insert-mode)
+(setq auto-insert-directory "~/.emacs.d/insert/")
+(add-to-list 'auto-insert-alist
+             '("\\.rb$" . "ruby.rb")
+             '("Dockerfile" . "Dockerfile"))
+
+;; 空白制御
+(require 'whitespace)
+(setq whitespace-style '(face           ; faceで可視化
+                         trailing       ; 行末
+                         tabs           ; タブ
+                         spaces         ; スペース
+                         empty          ; 先頭/末尾の空行
+                         space-mark     ; 表示のマッピング
+                         tab-mark
+                         ))
+
+(setq whitespace-display-mappings
+      '((space-mark ?\u3000 [?\u25a1])
+        ;; WARNING: the mapping below has a problem.
+        ;; When a TAB occupies exactly one column, it will display the
+        ;; character ?\xBB at that column followed by a TAB which goes to
+        ;; the next TAB column.
+        ;; If this is a problem for you, please, comment the line below.
+        (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])))
+
+;;;; スペースは全角のみを可視化
+(setq whitespace-space-regexp "\\(\u3000+\\)")
+
+;; 保存前に自動でクリーンアップ
+;; (setq whitespace-action '(auto-cleanup))
+(defun delete-trailing-whitespace-except-current-line ()
+  (interactive)
+  (let ((begin (line-beginning-position))
+        (end (line-end-position)))
+    (save-excursion
+      (when (< (point-min) begin)
+        (save-restriction
+          (narrow-to-region (point-min) (1- begin))
+          (delete-trailing-whitespace)))
+      (when (> (point-max) end)
+        (save-restriction
+          (narrow-to-region (1+ end) (point-max))
+          (delete-trailing-whitespace))))))
+(setq whitespace-action '(delete-trailing-whitespace-except-current-line))
+(global-whitespace-mode 1)
+(add-hook 'before-save-hook 'delete-trailing-whitespace-except-current-line)
+
+;; AutoSaveBuffersEnhanced
+(require 'auto-save-buffers-enhanced)
+(auto-save-buffers-enhanced t)
+(setq auto-save-buffers-enhanced-exclude-regexps '("^/ssh:" "/sudo:" "/multi:" "COMMIT_EDITMSG"))
+(setq auto-save-buffers-enhanced-interval 2)
+
+;;ファイルの最後に改行を挿入する
+(setq require-final-newline t)
+
+;; auto-complete
+(ac-config-default)
+(setq ac-use-menu-map t)
+
+;; web-mode
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.erb$"     . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?$"     . web-mode))
+(add-to-list 'auto-mode-alist '("\\.php$"     . web-mode))
+
+(defun my-web-mode-hook ()
+  "Hooks for Web mode."
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-enable-current-column-highlight t)
+  (setq web-mode-ac-sources-alist
+        '(("css" . (ac-source-words-in-buffer ac-source-css-property))
+          ("html" . (ac-source-words-in-buffer ac-source-abbrev))
+          ("php" . (ac-source-php-completion
+                    ac-source-words-in-buffer
+                    ac-source-words-in-same-mode-buffers
+                    ac-source-dictionary))))
+
+  (setq web-mode-engines-alist
+        '(("php"    . "\\.php\\'")
+          ("blade"  . "\\.blade\\."))))
+(add-hook 'web-mode-hook  'my-web-mode-hook)
+
+;; php-mode-hook
+(add-hook 'php-mode-hook
+          (lambda ()
+            (require 'php-completion)
+            (php-completion-mode t)
+            (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
+            (make-local-variable 'ac-sources)
+            (setq ac-sources '(
+                               ac-source-words-in-same-mode-buffers
+                               ac-source-php-completion
+                               ac-source-filename
+                               ))))
+;;; neotree
+(require 'neotree)
+(global-set-key [f9] 'neotree-toggle)
+
+;;; yasnippet
+(require 'yasnippet)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"))
+;; yas起動
+(yas-global-mode 1)
+
+(require 'magit-gitflow)
+(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
+;;
