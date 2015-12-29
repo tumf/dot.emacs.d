@@ -391,12 +391,12 @@
 (require 'neotree)
 (global-set-key [f9] 'neotree-toggle)
 
-;;; yasnippet
-(require 'yasnippet)
-(setq yas-snippet-dirs
-      '("~/.emacs.d/snippets"))
-;; yas起動
-(yas-global-mode 1)
+;;;;; yasnippet
+;;(require 'yasnippet)
+;;(setq yas-snippet-dirs
+;;      '("~/.emacs.d/snippets"))
+;;;; yas起動
+;;(yas-global-mode 1)
 
 (require 'magit-gitflow)
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
