@@ -1,0 +1,23 @@
+;;; package --- Summery
+;;; Commentary:
+;;; Code:
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+)
+
+;; If ~/.emacs.local is available load it as the last file so that it is
+;; possible to add local settings and overrides.
+(if (file-readable-p (expand-file-name "~/.local.el"))
+    (load-file (expand-file-name "~/.local.el"))
+  nil)
+
+(if (file-readable-p (expand-file-name "~/.emacs.d/config.el"))
+    (load-file (expand-file-name "~/.emacs.d/config.el"))
+  nil)
+
+(provide 'init)
+;;; init.el ends here
