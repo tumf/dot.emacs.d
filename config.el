@@ -214,6 +214,13 @@
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
 
 
+(helm-mini-default-sources
+ '(
+   helm-source-recentf
+   helm-source-files-in-current-dir
+   helm-source-buffers-list
+   ))
+
 ;;flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
