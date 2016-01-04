@@ -213,7 +213,7 @@
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
 
 
-(helm-mini-default-sources
+(setq helm-mini-default-sources
  '(
    helm-source-recentf
    helm-source-files-in-current-dir
