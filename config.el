@@ -192,7 +192,7 @@
 
 ;; Set a better font if running in windows
 (if (eq system-type 'windows-nt)
-    (set-default-font "consolas-10"))
+    (set-frame-font "consolas-10"))
 
 
 ;; helm-mode
@@ -208,6 +208,11 @@
 (global-set-key (kbd "C-c o") 'helm-occur)
 (global-set-key (kbd "C-c s") 'helm-ag)
 (global-set-key (kbd "C-c y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-c f") 'helm-find-file)
+
+
+(define-key helm-map (kbd "C-h") 'delete-backward-char)
+
 
 ;;flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -404,4 +409,10 @@
 
 (require 'magit-gitflow)
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
-;;
+
+;;; ファイル名補完キーマップで?をそのまま入力できるようにする
+(define-key minibuffer-local-filename-completion-map (kbd "?") nil)
+;;; ffapでワイルドカードを指定するとdiredを開くようにする
+(setq ffap-pass-wildcards-to-dired t)
+;;; C-x C-fなどをffap関係のコマンドに割り当てる
+(ffap-bindings)
