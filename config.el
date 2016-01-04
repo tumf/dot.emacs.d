@@ -25,11 +25,10 @@
                       jade-mode
                       php-mode php-completion
                       neotree
-                      yasnippet
                       ack
                       magit-gitflow
-                      ;;yasnippet yasnippet-bundle
                       ;;ansible
+                      yasnippet yasnippet-bundle
                       ))
 
 (require 'package) ;; You might already have this line
@@ -296,14 +295,6 @@
 
 
 ;;
-;; yasnippet
-;;
-;;(add-to-list 'load-path
-;;              "~/.emacs.d/plugins/yasnippet")
-;;(require 'yasnippet)
-;;(yas-global-mode 1)
-
-;;
 ;; auto-insert
 ;;
 (require 'autoinsert)
@@ -407,13 +398,6 @@
 (require 'neotree)
 (global-set-key [f9] 'neotree-toggle)
 
-;;;;; yasnippet
-;;(require 'yasnippet)
-;;(setq yas-snippet-dirs
-;;      '("~/.emacs.d/snippets"))
-;;;; yas起動
-;;(yas-global-mode 1)
-
 (require 'magit-gitflow)
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
 
@@ -423,3 +407,10 @@
 (setq ffap-pass-wildcards-to-dired t)
 ;;; C-x C-fなどをffap関係のコマンドに割り当てる
 (ffap-bindings)
+
+;;;;; yasnippet
+(require 'yasnippet)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"))
+;;;; yas起動
+(yas-global-mode t)
