@@ -27,8 +27,8 @@
                       neotree
                       ack
                       magit-gitflow
-                      ;;ansible
                       yasnippet yasnippet-bundle
+                      ansible ansible-doc
                       ))
 
 (require 'package) ;; You might already have this line
