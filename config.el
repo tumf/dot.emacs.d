@@ -217,8 +217,12 @@
 (global-set-key (kbd "C-c b") 'helm-descbinds)
 (global-set-key (kbd "C-c o") 'helm-occur)
 (global-set-key (kbd "C-c s") 'helm-ag)
-(global-set-key (kbd "C-c y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-c f") 'helm-find-file)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "M-r") 'helm-resume)
+
+
 
 
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
