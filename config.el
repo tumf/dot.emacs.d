@@ -10,7 +10,7 @@
                       smex
                       scpaste
                       ;;wakatime-mode
-                      helm helm-descbinds helm-ag helm-git
+                      helm helm-descbinds helm-ag helm-git helm-c-yasnippet
                       markdown-mode
                       smart-newline
                       flycheck
@@ -207,11 +207,13 @@
 (require 'helm-config)
 (require 'helm-ag)
 (require 'helm-descbinds)
+(require 'helm-c-yasnippet)
+(setq helm-yas-space-match-any-greedy t)
 
 (helm-descbinds-mode)
 
 (global-set-key (kbd "C-;") 'helm-mini)
-(global-set-key (kbd "C-c h") 'helm-mini)
+(global-set-key (kbd "C-.") 'helm-yas-complete)
 (global-set-key (kbd "C-c b") 'helm-descbinds)
 (global-set-key (kbd "C-c o") 'helm-occur)
 (global-set-key (kbd "C-c s") 'helm-ag)
