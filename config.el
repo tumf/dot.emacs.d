@@ -237,6 +237,7 @@
 ;; magit-mode
 (require 'magit)
 (global-set-key (kbd "C-c v") 'magit-status)
+(global-set-key (kbd "C-'") 'magit-status)
 
 ;; wakatime-mode
 ;;(global-wakatime-mode)
