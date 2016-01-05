@@ -32,7 +32,7 @@
                       ))
 
 (require 'package) ;; You might already have this line
-(package-refresh-contents)
+;;(package-refresh-contents)
 
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
