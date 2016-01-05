@@ -89,7 +89,6 @@
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-h" 'delete-backward-char)
-(global-set-key "\C-cg" 'magit-status)
 (global-set-key "\M-g" 'goto-line)
 (global-set-key "\C-w" 'kill-region)
 (define-key global-map "\C-\\" nil) ; \C-\の日本語入力の設定を無効にする
