@@ -1,0 +1,3 @@
+[submodule "elisp/ansible"]
+	path = elisp/ansible
+	url = https://github.com/tumf/emacs-ansible.git

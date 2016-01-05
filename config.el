@@ -1,4 +1,17 @@
 ;; my packages to be install
+
+(defvar rootpath (expand-file-name "~/.emacs.d"))
+(setq load-path (cons (concat rootpath "/elisp")load-path))
+
+;; submodule関連
+(defvar elisp-package-dir (concat rootpath "/elisp"))
+(defun submodule (dir)
+  (push (format "%s/%s" elisp-package-dir dir) load-path))
+(defun require-submodule (name &optional dir)
+  (push (format "%s/%s" elisp-package-dir (if (null dir) name dir)) load-path)
+  (require name))
+
+
 (defvar my-packages '(
                       better-defaults
                       exec-path-from-shell
@@ -28,7 +41,7 @@
                       ack
                       magit-gitflow
                       yasnippet
-                      ansible ansible-doc
+                      ansible-doc
                       ))
 
 (require 'package) ;; You might already have this line
@@ -423,6 +436,10 @@
 (setq ffap-pass-wildcards-to-dired t)
 ;;; C-x C-fなどをffap関係のコマンドに割り当てる
 (ffap-bindings)
+
+;; ansible minor mode
+(require-submodule 'ansible "ansible")
+(add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
 
 ;; ansible doc
 (add-hook 'yaml-mode-hook #'ansible-doc-mode)
