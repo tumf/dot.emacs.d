@@ -79,6 +79,7 @@
 ;; 外部コマンドのPATH
 ;; この設定が利用する主なコマンド `git` `ag`
 (push "/usr/local/bin" exec-path)
+(push "~/.pyenv/shims/" exec-path)
 
 ;; Key Bindings
 (setq ns-command-modifier (quote meta))
@@ -420,3 +421,5 @@
 ;;; C-x C-fなどをffap関係のコマンドに割り当てる
 (ffap-bindings)
 
+;; ansible doc
+(add-hook 'yaml-mode-hook #'ansible-doc-mode)
