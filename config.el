@@ -27,7 +27,7 @@
                       neotree
                       ack
                       magit-gitflow
-                      yasnippet yasnippet-bundle
+                      yasnippet
                       ansible ansible-doc
                       ))
 
@@ -192,6 +192,15 @@
 ;; Set a better font if running in windows
 (if (eq system-type 'windows-nt)
     (set-frame-font "consolas-10"))
+
+
+
+;;;;; yasnippet
+(require 'yasnippet)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"
+        ))
+(yas-global-mode 1)
 
 
 ;; helm-mode
@@ -408,9 +417,3 @@
 ;;; C-x C-fなどをffap関係のコマンドに割り当てる
 (ffap-bindings)
 
-;;;;; yasnippet
-(require 'yasnippet)
-(setq yas-snippet-dirs
-      '("~/.emacs.d/snippets"))
-;;;; yas起動
-(yas-global-mode t)
