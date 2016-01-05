@@ -222,6 +222,7 @@
 (require 'helm-descbinds)
 (require 'helm-c-yasnippet)
 (setq helm-yas-space-match-any-greedy t)
+(setq helm-yas-display-key-on-candidate t)
 
 (helm-descbinds-mode)
 
