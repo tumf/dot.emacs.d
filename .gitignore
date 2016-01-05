@@ -12,3 +12,4 @@ flycheck_init.el
 /ido.last
 /recentf
 /init.el
+/flycheck_config.el
