@@ -235,9 +235,6 @@
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "M-r") 'helm-resume)
 
-
-
-
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
 
 
@@ -443,3 +440,5 @@
 
 ;; ansible doc
 (add-hook 'yaml-mode-hook #'ansible-doc-mode)
+
+;;;
