@@ -429,11 +429,11 @@
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
 
 ;;; ファイル名補完キーマップで?をそのまま入力できるようにする
-(define-key minibuffer-local-filename-completion-map (kbd "?") nil)
+;;;(define-key minibuffer-local-filename-completion-map (kbd "?") nil)
 ;;; ffapでワイルドカードを指定するとdiredを開くようにする
-(setq ffap-pass-wildcards-to-dired t)
+;;;(setq ffap-pass-wildcards-to-dired t)
 ;;; C-x C-fなどをffap関係のコマンドに割り当てる
-(ffap-bindings)
+;;;(ffap-bindings)
 
 ;; ansible minor mode
 (require-submodule 'ansible "ansible")
