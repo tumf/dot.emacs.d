@@ -442,4 +442,8 @@
 ;; ansible doc
 (add-hook 'yaml-mode-hook #'ansible-doc-mode)
 
+;; jinja2-mode
+(add-to-list 'auto-mode-alist '("\\.j2$"     . jinja2-mode))
+
+
 ;;;
