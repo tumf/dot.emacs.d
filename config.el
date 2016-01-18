@@ -42,6 +42,7 @@
                       magit-gitflow
                       yasnippet
                       ansible-doc
+                      projectile projectile-rails
                       ))
 
 (require 'package) ;; You might already have this line
@@ -444,6 +445,12 @@
 
 ;; jinja2-mode
 (add-to-list 'auto-mode-alist '("\\.j2$"     . jinja2-mode))
+
+(require 'projectile)
+(projectile-global-mode)
+
+(require 'projectile-rails)
+(add-hook 'projectile-mode-hook 'projectile-rails-on)
 
 
 ;;;
