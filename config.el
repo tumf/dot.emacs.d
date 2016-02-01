@@ -12,9 +12,16 @@
   (require name))
 
 
+;; Set `PATH' environment variable and `exec-path'
+(setenv "PATH"
+        (replace-regexp-in-string
+         "[ \t\n]*$" ""
+         (shell-command-to-string "/bin/zsh --login -i -c 'echo $PATH'")))
+
+(setq exec-path (split-string (getenv "PATH") path-separator))
 (defvar my-packages '(
                       better-defaults
-                      exec-path-from-shell
+                      ;;exec-path-from-shell
                       paredit
                       idle-highlight-mode
                       ido-ubiquitous
