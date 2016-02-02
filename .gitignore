@@ -13,3 +13,5 @@ tramp$
 /recentf
 /init.el
 /flycheck_config.el
+/projectile-bookmarks.eld
+/tramp
