@@ -11,12 +11,17 @@
   (push (format "%s/%s" elisp-package-dir (if (null dir) name dir)) load-path)
   (require name))
 
+;; Set `SHELL' environment variable
+(setenv "SHELL"
+        (or (executable-find "zsh")
+            (executable-find "bash")
+            (error "Cannot find executable shells")))
 
 ;; Set `PATH' environment variable and `exec-path'
 (setenv "PATH"
         (replace-regexp-in-string
          "[ \t\n]*$" ""
-         (shell-command-to-string "/bin/zsh --login -i -c 'echo $PATH'")))
+         (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'")))
 
 (setq exec-path (split-string (getenv "PATH") path-separator))
 (defvar my-packages '(
