@@ -42,6 +42,7 @@
                       magit-gitflow
                       yasnippet
                       ansible-doc
+                      rvm
                       ))
 
 (require 'package) ;; You might already have this line
@@ -277,6 +278,7 @@
 (add-hook 'ruby-mode-hook ;; or any major-mode-hooks
   (lambda ()
   (smart-newline-mode t)))
+(rvm-use-default)
 
 ;;
 ;; Multi-term
