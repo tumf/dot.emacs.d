@@ -11,10 +11,22 @@
   (push (format "%s/%s" elisp-package-dir (if (null dir) name dir)) load-path)
   (require name))
 
+;; Set `SHELL' environment variable
+(setenv "SHELL"
+        (or (executable-find "zsh")
+            (executable-find "bash")
+            (error "Cannot find executable shells")))
 
+;; Set `PATH' environment variable and `exec-path'
+(setenv "PATH"
+        (replace-regexp-in-string
+         "[ \t\n]*$" ""
+         (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'")))
+
+(setq exec-path (split-string (getenv "PATH") path-separator))
 (defvar my-packages '(
                       better-defaults
-                      exec-path-from-shell
+                      ;;exec-path-from-shell
                       paredit
                       idle-highlight-mode
                       ido-ubiquitous
@@ -43,6 +55,7 @@
                       yasnippet
                       ansible-doc
                       rvm
+                      projectile projectile-rails
                       ))
 
 (require 'package) ;; You might already have this line
@@ -443,5 +456,15 @@
 
 ;; ansible doc
 (add-hook 'yaml-mode-hook #'ansible-doc-mode)
+
+;; jinja2-mode
+(add-to-list 'auto-mode-alist '("\\.j2$"     . jinja2-mode))
+
+(require 'projectile)
+(projectile-global-mode)
+
+(require 'projectile-rails)
+(add-hook 'projectile-mode-hook 'projectile-rails-on)
+
 
 ;;;
