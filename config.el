@@ -57,6 +57,7 @@
                       rvm
                       projectile projectile-rails
                       py-autopep8 pyenv-mode
+                      dockerfile-mode
                       ))
 
 (require 'package) ;; You might already have this line
@@ -512,5 +513,7 @@
 (setq ac-dwim t)
 
 ;; Dockerfile
+(autoload 'dockerfile-mode "dockerfile-mode" nil t)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 ;;;
