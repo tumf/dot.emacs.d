@@ -338,13 +338,18 @@
 
 ;;
 ;; auto-insert
-;;
+;; http://d.hatena.ne.jp/higepon/20080731/1217491155
 (require 'autoinsert)
 (auto-insert-mode)
 (setq auto-insert-directory "~/.emacs.d/insert/")
-(add-to-list 'auto-insert-alist
-             '("\\.rb$" . "ruby.rb")
-             '("Dockerfile" . "Dockerfile"))
+(setq auto-insert-alist
+      (nconc '(
+               ("\\.rb$" . "template.rb")
+               ("\\.php$" . "template.php")
+               ("\\.py$" . "template.py")
+               ("\\.ya?ml$" . "template.yaml")
+               ("Dockerfile" . "Dockerfile")
+               ) auto-insert-alist))
 
 ;; 空白制御
 (require 'whitespace)
