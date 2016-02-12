@@ -252,6 +252,7 @@
 (global-set-key (kbd "M-r") 'helm-resume)
 
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
+(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
 
 
 (setq helm-mini-default-sources
