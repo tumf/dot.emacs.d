@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: var_dump
+# key: vd
+# binding: direct-keybinding
+# --
+var_dump($${1:var});
+$0
