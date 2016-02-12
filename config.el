@@ -56,6 +56,7 @@
                       ansible-doc
                       rvm
                       projectile projectile-rails
+                      py-autopep8 pyenv-mode
                       ))
 
 (require 'package) ;; You might already have this line
@@ -487,6 +488,19 @@
 
 (require 'projectile-rails)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
+
+;; python-mode
+(require 'py-autopep8)
+(add-hook 'python-mode-hook
+          (lambda ()
+            (define-key python-mode-map
+              (kbd "C-x C-s")
+              (lambda () (interactive)
+                (py-autopep8)
+                (save-buffer)))))
+(pyenv-mode-set "2.7.10")
+
+(add-hook 'projectile-switch-project-hook 'projectile-pyenv-mode-set)
 
 
 ;;;
