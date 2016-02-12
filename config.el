@@ -502,5 +502,14 @@
 
 (add-hook 'projectile-switch-project-hook 'projectile-pyenv-mode-set)
 
+;; php-mode
+(add-to-list 'auto-mode-alist '("\\.php$"     . php-mode))
+
+(require 'php-auto-yasnippets)
+(setq php-auto-yasnippet-php-program "~/.emacs.d/elpa/php-auto-yasnippets-20141128.1411/Create-PHP-YASnippet.php")
+(define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
+(setq ac-dwim t)
+
+;; Dockerfile
 
 ;;;
