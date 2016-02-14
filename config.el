@@ -61,6 +61,7 @@
                       dockerfile-mode
                       smartrep
                       multiple-cursors
+                      github-issues
                       ))
 
 (require 'package) ;; You might already have this line
@@ -528,6 +529,8 @@
 (autoload 'dockerfile-mode "dockerfile-mode" nil t)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
+;; Github
+(require 'github-issues)
 
 (defvar ctl-q-map (make-keymap))
 (define-key global-map "\C-q" ctl-q-map)
