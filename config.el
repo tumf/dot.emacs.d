@@ -32,6 +32,7 @@
                       ido-ubiquitous
                       find-file-in-project
                       magit
+                      ag
                       smex
                       scpaste
                       ;;wakatime-mode
@@ -246,6 +247,7 @@
 (global-set-key (kbd "C-.") 'helm-yas-complete)
 (global-set-key (kbd "C-c b") 'helm-descbinds)
 (global-set-key (kbd "C-c o") 'helm-occur)
+(global-set-key (kbd "C-s") 'helm-do-ag-project-root)
 (global-set-key (kbd "C-c s") 'helm-ag)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "M-x") 'helm-M-x)
