@@ -248,14 +248,20 @@
 (global-set-key (kbd "C-;") 'helm-mini)
 (global-set-key (kbd "C-.") 'helm-yas-complete)
 (global-set-key (kbd "C-c b") 'helm-descbinds)
-(global-set-key (kbd "C-c o") 'helm-occur)
-(global-set-key (kbd "C-s") 'helm-do-ag-project-root)
-(global-set-key (kbd "C-c s") 'helm-ag)
+(global-set-key (kbd "C-s") 'helm-occur)
+
+(global-set-key (kbd "C-c s") (lambda ()
+                                (interactive)
+                                (if (ignore-errors (projectile-project-root))
+                                    (helm-do-ag-project-root)
+                                  (helm-do-grep-ag))))
+
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "M-r") 'helm-resume)
 
+(define-key helm-map (kbd "C-k") 'helm-buffer-run-kill-buffers)
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
 (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
 
