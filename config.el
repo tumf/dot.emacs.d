@@ -59,6 +59,7 @@
                       projectile projectile-rails
                       py-autopep8 pyenv-mode
                       dockerfile-mode
+                      smartrep
                       ))
 
 (require 'package) ;; You might already have this line
@@ -523,4 +524,13 @@
 
 (defvar ctl-q-map (make-keymap))
 (define-key global-map "\C-q" ctl-q-map)
+
+(require 'smartrep)
+(smartrep-define-key
+    global-map "C-q" '(("n" . (lambda () (scroll-other-window 1)))
+                       ("p" . (lambda () (scroll-other-window -1)))
+                       ("N" . 'scroll-other-window)
+                       ("P" . (lambda () (scroll-other-window '-)))
+                       ("a" . (lambda () (beginning-of-buffer-other-window 0)))
+                       ("e" . (lambda () (end-of-buffer-other-window 0)))))
 ;;;
