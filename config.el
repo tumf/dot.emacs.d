@@ -36,7 +36,7 @@
                       smex
                       scpaste
                       ;;wakatime-mode
-                      helm helm-descbinds helm-ag helm-git helm-c-yasnippet
+                      helm helm-descbinds helm-ag helm-git helm-c-yasnippet helm-projectile
                       markdown-mode
                       smart-newline
                       flycheck
@@ -257,12 +257,11 @@
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
 (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
 
-
 (setq helm-mini-default-sources
  '(
-   helm-source-recentf
-   helm-source-files-in-current-dir
    helm-source-buffers-list
+   helm-source-files-in-current-dir
+   helm-source-recentf
    ))
 
 ;;flycheck
@@ -489,6 +488,9 @@
 
 (require 'projectile)
 (projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(require 'helm-projectile)
+(helm-projectile-on)
 
 (require 'projectile-rails)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
