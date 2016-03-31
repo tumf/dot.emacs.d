@@ -62,6 +62,7 @@
                       smartrep
                       multiple-cursors
                       github-issues
+                      rubocop
                       ))
 
 (require 'package) ;; You might already have this line
@@ -303,25 +304,12 @@
 ;; smart-newline
 (add-hook 'ruby-mode-hook ;; or any major-mode-hooks
   (lambda ()
-  (smart-newline-mode t)))
+    (smart-newline-mode t)))
 (rvm-use-default)
 
-(defun ruby-beautify-buffer ()
-  (interactive)
-  (let (p rb)
-      (setq p (point) rb (buffer-string))
-
-      (with-temp-buffer
-        (insert rb)
-        (call-process-region (point-min) (point-max) "rbeautify" t t)
-        (setq rb (buffer-string)))
-
-      (erase-buffer)
-      (insert rb)
-      (goto-char p)))
-
+;; ruby modeで C-x C-s をrobocopによる整形に割り当てる
 (eval-after-load 'ruby-mode
-  '(define-key ruby-mode-map (kbd "C-x C-s") 'ruby-beautify-buffer))
+  '(define-key ruby-mode-map (kbd "C-x C-s") 'rubocop-autocorrect-current-file))
 
 ;;
 ;; Multi-term
