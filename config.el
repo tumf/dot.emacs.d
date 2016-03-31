@@ -459,6 +459,17 @@
                                ac-source-php-completion
                                ac-source-filename
                                ))))
+;; M-x php-cs-fixer
+(defun php-cs-fixer ()
+  (interactive)
+  (let ((filename (buffer-file-name (current-buffer))))
+    (call-process "php-cs-fixer" nil nil nil "fix" filename )
+    (revert-buffer t t)))
+
+;; php modeで C-x C-s をphp-cs-fixerによる整形に割り当てる
+(eval-after-load 'php-mode
+  '(define-key php-mode-map (kbd "C-x C-s") 'php-cs-fixer))
+
 ;;; neotree
 (require 'neotree)
 (global-set-key [f9] 'neotree-toggle)
