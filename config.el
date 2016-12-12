@@ -27,6 +27,7 @@
 (defvar my-packages '(
                       better-defaults
                       ;;exec-path-from-shell
+                      super-save
                       paredit
                       idle-highlight-mode
                       ido-ubiquitous
@@ -45,7 +46,7 @@
                       color-theme
                       yaml-mode
                       json-mode
-                      auto-save-buffers-enhanced
+;;                      auto-save-buffers-enhanced
                       auto-complete
                       web-mode
                       jade-mode
@@ -412,10 +413,15 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace-except-current-line)
 
 ;; AutoSaveBuffersEnhanced
-(require 'auto-save-buffers-enhanced)
-(auto-save-buffers-enhanced t)
-(setq auto-save-buffers-enhanced-exclude-regexps '("^/ssh:" "/sudo:" "/multi:" "COMMIT_EDITMSG"))
-(setq auto-save-buffers-enhanced-interval 2)
+;;(require 'auto-save-buffers-enhanced)
+;;(auto-save-buffers-enhanced t)
+;;(setq auto-save-buffers-enhanced-exclude-regexps '("^/ssh:" "/sudo:" "/multi:" "COMMIT_EDITMSG"))
+;;(setq auto-save-buffers-enhanced-interval 2)
+
+;; Super save mode
+(super-save-mode +1)
+
+
 
 ;;ファイルの最後に改行を挿入する
 (setq require-final-newline t)
