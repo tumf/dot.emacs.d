@@ -30,6 +30,7 @@
                       super-save
                       paredit
                       idle-highlight-mode
+                      editorconfig
                       ido-ubiquitous
                       find-file-in-project
                       magit
@@ -90,6 +91,9 @@
 (setenv "LANG" "ja_JP.UTF-8")
 (set-language-environment 'utf-8)
 (prefer-coding-system 'utf-8)
+
+;;editorconfig
+(editorconfig-mode 1)
 
 ;;(cond
 ;; ((or (eq window-system 'mac) (eq window-system 'ns))
