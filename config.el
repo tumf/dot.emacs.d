@@ -1,7 +1,16 @@
-;; my packages to be install
+;;; package --- Summary
+;;; Commentary:
+;;; Code:
 
+;; my packages to be install
 (defvar rootpath (expand-file-name "~/.emacs.d"))
 (setq load-path (cons (concat rootpath "/elisp")load-path))
+
+(package-initialize)
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+        ("melpa" . "http://melpa.org/packages/")
+        ("org" . "http://orgmode.org/elpa/")))
 
 ;; submodule関連
 (defvar elisp-package-dir (concat rootpath "/elisp"))
@@ -240,7 +249,7 @@
       '("~/.emacs.d/snippets"
         ))
 (yas-global-mode 1)
-
+(define-key yas-minor-mode-map (kbd "TAB") 'yas/expand)
 
 ;; helm-mode
 (require 'helm-config)
@@ -268,24 +277,37 @@
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "M-r") 'helm-resume)
 
+(global-set-key (kbd "C-c o f") 'helm-open-github-from-file)
+(global-set-key (kbd "C-c o c") 'helm-open-github-from-commit)
+(global-set-key (kbd "C-c o i") 'helm-open-github-from-issues)
+(global-set-key (kbd "C-c o p") 'helm-open-github-from-pull-requests)
+
 (define-key helm-map (kbd "C-k") 'helm-buffer-run-kill-buffers)
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
 (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
 
+
+(setq recentf-max-saved-items nil)
+
 (setq helm-mini-default-sources
  '(
+   helm-source-recentf
    helm-source-buffers-list
    helm-source-files-in-current-dir
-   helm-source-recentf
    ))
 
 ;;flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(with-eval-after-load 'flycheck
+  (flycheck-pos-tip-mode))
 
 ;; magit-mode
 (require 'magit)
-(global-set-key (kbd "C-c v") 'magit-status)
-(global-set-key (kbd "C-'") 'magit-status)
+(global-set-key (kbd "C-'")
+                (lambda ()
+                  (interactive)
+                  (save-buffer)
+                  (magit-status)))
 
 ;; wakatime-mode
 ;;(global-wakatime-mode)
@@ -306,18 +328,70 @@
 ;;
 ;; Ruby mode
 ;;
+
+(global-auto-revert-mode 1)
+
+;; ruby modeで C-x C-s をrobocopによる整形に割り当てる
+(eval-after-load 'ruby-mode
+  '(define-key ruby-mode-map (kbd "C-x C-s")
+     (lambda ()
+       (interactive)
+       (save-buffer)
+       (rubocop-autocorrect-current-file))))
+
+;; flycheck
+(add-hook 'ruby-mode-hook
+          '(lambda ()
+             (setq flycheck-checker 'ruby-rubocop)
+             (flycheck-mode 1)))
+
+(require 'helm-rdefs)
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (define-key ruby-mode-map (kbd "C-c r") 'helm-rdefs)))
+
+(eval-after-load 'rspec-mode
+  '(define-key rspec-mode-map (kbd "C-c C-c")
+     (lambda ()
+       (interactive)
+       (save-buffer)
+       (rspec-verify-single))))
+
+(require 'ruby-electric)
+(add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
+(setq ruby-electric-expand-delimiters-list nil)
+
+;; C-x C-q でrspecの結果からpryへ
+(add-hook 'after-init-hook 'inf-ruby-switch-setup)
+
+(require 'smart-compile)
+(eval-after-load 'ruby-mode
+  '(define-key ruby-mode-map (kbd "C-c C-c") 'smart-compile))
+
+
+(eval-after-load 'rspec-mode
+  '(rspec-install-snippets))
+
+;; rvm-mode
+(rvm-use-default)
+(add-hook 'ruby-mode-hook
+          (lambda () (rvm-activate-corresponding-ruby)))
+
+(setq inf-ruby-default-implementation "pry")
+(setq inf-ruby-eval-binding "Pry.toplevel_binding")
+(setenv "PAGER" "cat")
+;;(add-hook 'inf-ruby-mode-hook 'ansi-color-for-comint-mode-on)
+
+
 ;; smart-newline
 (add-hook 'ruby-mode-hook ;; or any major-mode-hooks
   (lambda ()
     (smart-newline-mode t)))
-(rvm-use-default)
 
-;; ruby modeで C-x C-s をrobocopによる整形に割り当てる
-(eval-after-load 'ruby-mode
-  '(define-key ruby-mode-map (kbd "C-x C-s") 'rubocop-autocorrect-current-file))
+
 
 ;;
-;; Multi-term
+;; file-term
 ;;
 (require 'multi-term)
 (setq system-uses-terminfo nil)
@@ -335,29 +409,6 @@
 ;; shell-pop
 ;;
 (require 'shell-pop)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ack-command "/usr/local/bin/ack ")
- '(shell-pop-set-internal-mode "multi-term")
- '(shell-pop-shell-type
-   (quote
-    ("multi-term" "*terminal<1>*"
-     (quote
-      (lambda nil
-        (multi-term))))))
- '(shell-pop-term-shell "/bin/zsh")
- '(shell-pop-universal-key "<f8>")
- '(shell-pop-window-position "bottom")
- '(shell-pop-window-size 30)
-;; '(wakatime-api-key "2469a33c-452a-42e3-8d71-772b3ac257ab")
-;; '(wakatime-cli-path
-;; "~/.pyenv/versions/2.6.9/lib/python2.6/site-packages/wakatime/cli.py")
-)
-
 
 ;;
 ;; auto-insert
@@ -424,6 +475,10 @@
 
 ;; Super save mode
 (super-save-mode +1)
+;;; save-buffer when switch buffer.
+(add-hook 'switch-buffer-functions
+          (lambda (prev cur)
+            (save-buffer prev)))
 
 
 
@@ -432,7 +487,11 @@
 
 ;; auto-complete
 (ac-config-default)
+
 (setq ac-use-menu-map t)
+(global-auto-complete-mode t)
+(setq-default ac-sources (push 'ac-source-yasnippet ac-sources))
+
 
 ;; web-mode
 (require 'web-mode)
@@ -457,32 +516,10 @@
           ("blade"  . "\\.blade\\."))))
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
-;; php-mode-hook
-(add-hook 'php-mode-hook
-          (lambda ()
-            (require 'php-completion)
-            (php-completion-mode t)
-            (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
-            (make-local-variable 'ac-sources)
-            (setq ac-sources '(
-                               ac-source-words-in-same-mode-buffers
-                               ac-source-php-completion
-                               ac-source-filename
-                               ))))
-;; M-x php-cs-fixer
-(defun php-cs-fixer ()
-  (interactive)
-  (let ((filename (buffer-file-name (current-buffer))))
-    (call-process "php-cs-fixer" nil nil nil "fix" filename )
-    (revert-buffer t t)))
-
-;; php modeで C-x C-s をphp-cs-fixerによる整形に割り当てる
-(eval-after-load 'php-mode
-  '(define-key php-mode-map (kbd "C-x C-s") 'php-cs-fixer))
-
 ;;; neotree
 (require 'neotree)
 (global-set-key [f9] 'neotree-toggle)
+(setq neo-smart-open t)
 
 (require 'magit-gitflow)
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
@@ -529,17 +566,9 @@
 ;; php-mode
 (add-to-list 'auto-mode-alist '("\\.php$"     . php-mode))
 
-(require 'php-auto-yasnippets)
-(setq php-auto-yasnippet-php-program "~/.emacs.d/elpa/php-auto-yasnippets-20141128.1411/Create-PHP-YASnippet.php")
-(define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
-(setq ac-dwim t)
-
 ;; Dockerfile
 (autoload 'dockerfile-mode "dockerfile-mode" nil t)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
-
-;; Github
-(require 'github-issues)
 
 (defvar ctl-q-map (make-keymap))
 (define-key global-map "\C-q" ctl-q-map)
@@ -573,5 +602,57 @@
     ("i"        . 'mc/insert-numbers)
     ("o"        . 'mc/sort-regions)
     ("O"        . 'mc/reverse-regions)))
+
+;;;
+;;; org-mode
+;;;
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+;; org-modeの初期化
+(require 'org-install)
+;; キーバインドの設定
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+(eval-after-load "org"
+  '(progn
+     (define-key org-mode-map (kbd "C-'") nil)
+     ))
+
+;; 拡張子がorgのファイルを開いた時，自動的にorg-modeにする
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+;; org-modeでの強調表示を可能にする
+(add-hook 'org-mode-hook 'turn-on-font-lock)
+;; 見出しの余分な*を消す
+(setq org-hide-leading-stars t)
+;; org-default-notes-fileのディレクトリ
+(setq org-directory "~/org/")
+;; org-default-notes-fileのファイル名
+(setq org-default-notes-file "notes.org")
+
+;; inline表示の画像をC-cC-cの後に自動更新
+(add-hook 'org-babel-after-execute-hook
+          (lambda ()
+            (when org-inline-image-overlays
+              (org-redisplay-inline-images))))
+
+;; TODO状態
+(setq org-todo-keywords
+      '((sequence "PLAN(p)" "TODO(t)" "WIP(w)" "|" "DONE(d)" "PEND(e)")))
+;; DONEの時刻を記録
+(setq org-log-done 'time)
+
+(setq open-junk-file-format "~/memo/%Y%m%d.org")
+(global-set-key "\C-xj" 'open-junk-file)
+
+(require 'tramp)
+(setq tramp-default-method "ssh")
+
+(defun git-now ()
+  (interactive
+   (let ((git "git"))
+     (when (executable-find git)
+       (start-process "git-now" nil (concat git " " "now"))))))
 
 ;;;
