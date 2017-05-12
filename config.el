@@ -655,7 +655,7 @@
      (when (executable-find command)
        (shell-command (concat command " now"))))))
 
-(shell-command "git")
+(shell-command (concat "git" " now"))
 
 (start-process "git-now" nil "git" "now")
 
