@@ -650,15 +650,8 @@
 (setq tramp-default-method "ssh")
 
 (defun git-now ()
-  "execute git now"
-  (interactive
-   (let ((command "git"))
-     (when (executable-find command)
-       (shell-command (concat command " now"))))))
-
-(shell-command (concat "git" " now"))
-(shell-command "git now")
-
-(start-process "git-now" nil "git" "now")
+  "Execute git now."
+  (interactive)
+  (shell-command (concat "git now")))
 
 ;;;
