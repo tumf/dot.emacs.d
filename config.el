@@ -653,6 +653,6 @@
   (interactive
    (let ((git "git"))
      (when (executable-find git)
-       (start-process "git-now" "aaa" git)))))
+       (start-process "git-now" "aaa" git "now")))))
 
 ;;;
