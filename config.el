@@ -651,9 +651,11 @@
 
 (defun git-now ()
   (interactive
-   (let ((git-command "git"))
-     (when (executable-find git-command)
-       (shell-command (concat git-command " now") )))))
+   (let ((command "git"))
+     (when (executable-find command)
+       (shell-command (concat command " now"))))))
+
+(shell-command "git")
 
 (start-process "git-now" nil "git" "now")
 
