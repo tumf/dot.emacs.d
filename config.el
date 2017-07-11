@@ -291,8 +291,8 @@
 
 (setq helm-mini-default-sources
  '(
-   helm-source-recentf
    helm-source-buffers-list
+   helm-source-recentf
    helm-source-files-in-current-dir
    ))
 
@@ -475,10 +475,11 @@
 
 ;; Super save mode
 (super-save-mode +1)
-;;; save-buffer when switch buffer.
-(add-hook 'switch-buffer-functions
-          (lambda (prev cur)
-            (save-buffer prev)))
+(setq super-save-auto-save-when-idle t)
+;; save-buffer when switch buffer.
+;;(add-hook 'switch-buffer-functions
+;;          (lambda (prev cur)
+;;            (save-buffer prev)))
 
 
 
@@ -516,10 +517,15 @@
           ("blade"  . "\\.blade\\."))))
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
+;;Window Move M-up/down/left/right
+(windmove-default-keybindings 'meta)
 ;;; neotree
 (require 'neotree)
 (global-set-key [f9] 'neotree-toggle)
 (setq neo-smart-open t)
+(setq neo-create-file-auto-open t)
+(setq neo-persist-show t)
+
 
 (require 'magit-gitflow)
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
@@ -654,4 +660,8 @@
   (interactive)
   (shell-command (concat "git now")))
 
+(add-hook 'java-mode-hook (lambda ()
+                            (setq c-basic-offset 2
+                                  tab-width 2
+                                  indent-tabs-mode nil)))
 ;;;
