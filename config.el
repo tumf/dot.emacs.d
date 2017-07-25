@@ -74,6 +74,7 @@
                       multiple-cursors
                       github-issues
                       rubocop
+                      expand-region
                       ))
 
 (require 'package) ;; You might already have this line
@@ -664,4 +665,8 @@
                             (setq c-basic-offset 2
                                   tab-width 2
                                   indent-tabs-mode nil)))
+;; expand region
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
 ;;;
